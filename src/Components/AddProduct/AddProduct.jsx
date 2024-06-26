@@ -41,11 +41,11 @@ const AddProduct = () => {
         let formData = new FormData();
         formData.append('product', image);
         console.log(formData);
-        await fetch("http://localhost:4000/upload", { method: "POST", headers: { Accept: "application/json" }, body: formData }).then((resp) => resp.json()).then((data) => { responseData = data });
+        await fetch("https://shopper-ecommerce-55781390a868.herokuapp.com/upload", { method: "POST", headers: { Accept: "application/json" }, body: formData }).then((resp) => resp.json()).then((data) => { responseData = data });
         if (responseData.success) {
             product.image = responseData.image_url;
             console.log(product);
-            await fetch("http://localhost:4000/addproducts", { method: "POST", headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(product) })
+            await fetch("https://shopper-ecommerce-55781390a868.herokuapp.com/addproducts", { method: "POST", headers: { Accept: 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(product) })
                 .then((resp) => resp.json).then((data) => { alert("Product added") }).catch(err => alert("Failed"))
         }
     }
